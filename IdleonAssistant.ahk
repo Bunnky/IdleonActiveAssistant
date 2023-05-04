@@ -50,6 +50,7 @@ Gui, Add, Picture, x0 y0 w300 h215 Border Center vMain GuiMove, %A_ScriptDir%\id
 Gui, Show, x0 y0 h215 w300
 MsgBox, 48,IdleOn Active Assistant, Note:`n- Hotkeys only work while IdleOn window is focused except `END` to close script`n- Collect water clicks purchase 10 times
 Return
+
 ;------------------------------------------------
 ;------------------------------------------------
 ; Close Script
