@@ -1,4 +1,4 @@
-﻿;██████╗ ██████╗ ██████╗ ███████╗██████╗     ██████╗ ██╗   ██╗       ██████╗ ██╗   ██╗███╗   ██╗███╗   ██╗██╗  ██╗██╗   ██╗
+﻿; ██████╗ ██████╗ ██████╗ ███████╗██████╗     ██████╗ ██╗   ██╗       ██████╗ ██╗   ██╗███╗   ██╗███╗   ██╗██╗  ██╗██╗   ██╗
 ;██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗    ██╔══██╗╚██╗ ██╔╝██╗    ██╔══██╗██║   ██║████╗  ██║████╗  ██║██║ ██╔╝╚██╗ ██╔╝
 ;██║     ██║   ██║██║  ██║█████╗  ██║  ██║    ██████╔╝ ╚████╔╝ ╚═╝    ██████╔╝██║   ██║██╔██╗ ██║██╔██╗ ██║█████╔╝  ╚████╔╝ 
 ;██║     ██║   ██║██║  ██║██╔══╝  ██║  ██║    ██╔══██╗  ╚██╔╝  ██╗    ██╔══██╗██║   ██║██║╚██╗██║██║╚██╗██║██╔═██╗   ╚██╔╝  
@@ -44,11 +44,11 @@ IfNotExist, %A_ScriptDir%\idleSplash.png
 
 Gui:
 Gui, -Caption +ToolWindow +0x400000
-Gui, Add, Link, x265 y2, <a href="https://github.com/Bunnky">GitHub</a>
+Gui, Add, Link, x265 y2, <a href="https://github.com/Bunnky/IdleonActiveAssistant">GitHub</a>
 Gui, Show
 Gui, Add, Picture, x0 y0 w300 h215 Border Center vMain GuiMove, %A_ScriptDir%\idleSplash.png
 Gui, Show, x0 y0 h215 w300
-MsgBox, 48,IdleOn Active Assistant, Note:`n`n- Hotkeys only work while IdleOn window is focused except `END` to close script`n- Collect water clicks purchase 10 times
+MsgBox, 48,IdleOn Active Assistant, Note:`n- Hotkeys only work while IdleOn window is focused except `END` to close script`n- Collect water clicks purchase 10 times
 Return
 ;------------------------------------------------
 ;------------------------------------------------
@@ -106,7 +106,7 @@ Return
 Char1:
 	MouseClick, Left, pbX, pbY				;Move mouse and click players button
 	Sleep sleepTime
-	GoSub, PageOnePlayers							;Move mouse and click next button						
+	GoSub, PageOnePlayers					;Move mouse and click next button						
 	MouseClick, Left, csX, csY				;Move mouse and click character
 	Sleep sleepTime						
 	MouseClick, Left, spX, spY				;Move mouse and click select player
@@ -116,7 +116,7 @@ Return
 Char2:
 	MouseClick, Left, pbX, pbY				;Move mouse and click players button
 	Sleep sleepTime
-	GoSub, PageOnePlayers							;Move mouse and click next button			
+	GoSub, PageOnePlayers					;Move mouse and click next button			
 	MouseClick, Left, csX + offsetX, csY	;Move mouse and click character
 	Sleep sleepTime			
 	MouseClick, Left, spX, spY				;Move mouse and click select player
@@ -126,7 +126,7 @@ Return
 Char3:
 	MouseClick, Left, pbX, pbY				;Move mouse and click players button
 	Sleep sleepTime
-	GoSub, PageOnePlayers							;Move mouse and click next button			
+	GoSub, PageOnePlayers					;Move mouse and click next button			
 	MouseClick, Left, csX + offsetX*2, csY	;Move mouse and click character
 	Sleep sleepTime			
 	MouseClick, Left, spX, spY				;Move mouse and click select player
@@ -136,7 +136,7 @@ Return
 Char4:
 	MouseClick, Left, pbX, pbY				;Move mouse and click players button
 	Sleep sleepTime
-	GoSub, PageOnePlayers							;Move mouse and click next button
+	GoSub, PageOnePlayers					;Move mouse and click next button
 	MouseClick, Left, csX, csY + offsetY	;Move mouse and click character
 	Sleep sleepTime			
 	MouseClick, Left, spX, spY				;Move mouse and click select player
@@ -176,7 +176,7 @@ Return
 Char8:
 	MouseClick, Left, pbX, pbY				;Move mouse and click players button
 	Sleep sleepTime
-	GoSub, PageTwoPlayers							;Move mouse and click next button			
+	GoSub, PageTwoPlayers					;Move mouse and click next button			
 	MouseClick, Left, csX + offsetX, csY	;Move mouse and click character
 	Sleep sleepTime			
 	MouseClick, Left, spX, spY				;Move mouse and click select player
@@ -186,7 +186,7 @@ Return
 Char9:
 	MouseClick, Left, pbX, pbY				;Move mouse and click players button
 	Sleep sleepTime
-	GoSub, PageTwoPlayers							;Move mouse and click next button			
+	GoSub, PageTwoPlayers					;Move mouse and click next button			
 	MouseClick, Left, csX + offsetX*2, csY	;Move mouse and click character
 	Sleep sleepTime			
 	MouseClick, Left, spX, spY				;Move mouse and click select player
@@ -196,7 +196,7 @@ Return
 Char10:
 	MouseClick, Left, pbX, pbY				;Move mouse and click players button
 	Sleep sleepTime
-	GoSub, PageTwoPlayers							;Move mouse and click next button
+	GoSub, PageTwoPlayers					;Move mouse and click next button
 	MouseClick, Left, csX, csY + offsetY	;Move mouse and click character
 	Sleep sleepTime			
 	MouseClick, Left, spX, spY				;Move mouse and click select player
@@ -252,7 +252,7 @@ CheckProduction:
 	Sleep sleepTime
 	MouseClick, Left, 883, 227 				;Move mouse and click quick deposit button x2
 	Sleep sleepTime
-	Send {Esc}								;Open Menu
+	Send {Esc}								;Close Menu
 Return
 ;------------------------------------------------
 ;------------------------------------------------
@@ -273,7 +273,7 @@ CollectWater:
 		MouseClick, Left, 720, 512 			;Move mouse and click purchase button 10 times
 		Sleep sleepTime	
 	}
-	Send {Esc}								;Open Menu
+	Send {Esc}								;Close Menu
 Return
 
 
