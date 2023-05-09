@@ -20,7 +20,7 @@ SetBatchLines -1
 ;				Variables
 ;
 ;================================================
-sleepTime := 200
+global sleepTime := 200
 spX := 1009
 spY := 792
 csX := 655
@@ -40,7 +40,7 @@ nbY2 := 793
 ;
 ;================================================
 IfNotExist, %A_ScriptDir%\idleSplash.png
-	URLDownloadToFile, https://www.dropbox.com/s/54ltltggmbgzidb/idleSplash.png?dl=1, idleSplash.png
+	URLDownloadToFile, https://www.dropbox.com/s/emj6k1ccsgb5boj/idleSplash.png?dl=1, idleSplash.png
 
 Gui:
 Gui, -Caption +ToolWindow +0x400000
@@ -48,7 +48,6 @@ Gui, Add, Link, x265 y2, <a href="https://github.com/Bunnky/IdleonActiveAssistan
 Gui, Show
 Gui, Add, Picture, x0 y0 w300 h215 Border Center vMain GuiMove, %A_ScriptDir%\idleSplash.png
 Gui, Show, x0 y0 h215 w300
-MsgBox, 48,IdleOn Active Assistant, Note:`n- Hotkeys only work while IdleOn window is focused except `END` to close script`n- Collect water clicks purchase 10 times
 Return
 
 ;------------------------------------------------
@@ -57,6 +56,7 @@ Return
 End::
 Gui, Destroy
 Gui Cancel
+FileDelete, %A_ScriptDir%\idleSplash.png
 ExitApp
 
 ;================================================
@@ -76,6 +76,8 @@ F7::GoSub, Char7
 NumpadSub::GoSub, GoToTown
 NumpadMult::GoSub, CheckProduction
 NumpadDiv::GoSub, CollectWater
+NumpadDot::AmarokFarm()
+MButton::GoSub, AutoOnOff
 
 ;================================================
 ;
@@ -85,7 +87,7 @@ NumpadDiv::GoSub, CollectWater
 GetColors:
 	MouseGetPos, xpos, ypos 
 	PixelGetColor, color, xpos, ypos, Fast RGB ;Arrows
-	msgbox %color%
+	msgbox %xpos%, %ypos%: %color%
 Return
 ;------------------------------------------------
 ;------------------------------------------------
@@ -276,6 +278,45 @@ CollectWater:
 	}
 	Send {Esc}								;Close Menu
 Return
+;------------------------------------------------
+;------------------------------------------------
+AutoOnOff:
+	MouseGetPos, xpos, ypos 
+	MouseClick, Left, 901, 995				;Move mouse and click quick Auto button
+	Sleep sleepTime
+	MouseMove, xpos, ypos					;Move mouse back to original pos
+Return
+;------------------------------------------------
+;------------------------------------------------
+AmarokFarm()
+{
+static Toggle
+SetTimer, AmarokFarm, % (Toggle:=!Toggle) ? 100 : "Off"
+AmarokFarm:
+if Toggle {
+	IfWinActive, ahk_exe LegendsOfIdleon.exe
+	ToolTip, AMAROK ON FARM!, 270, 215, 3
+	PixelGetColor, redo, 409, 166, Fast RGB
+	if (redo = 0xEEEEEE) {
+		Sleep 6000
+		MouseGetPos, posx, posy
+		MouseClick, Left, 451, 142
+		Sleep sleepTime
+	}
+	if (redo = 0xFFB4B4) {
+		Sleep 6000
+		SetTimer AmarokToolTip, 100
+		GoSub, GoToTown
+		Return
+	}
+		MouseMove, posx, posy
+} else {
+	SetTimer AmarokToolTip, 100
+	}
+Return
+}
+;------------------------------------------------
+;------------------------------------------------
 
 
 
@@ -285,6 +326,15 @@ Return
 
 
 
+;================================================
+;
+;				Timers
+;
+;================================================
+AmarokToolTip:
+ToolTip, , , , 3
+SetTimer, AmarokToolTip, Off
+return
 
 
 
