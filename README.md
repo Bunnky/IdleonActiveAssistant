@@ -1,7 +1,7 @@
 
 # Idleon Active Assistant
 
-![Idleon Active Assistant](https://www.dropbox.com/s/54ltltggmbgzidb/idleSplash.png?raw=1)
+![Idleon Active Assistant](https://www.dropbox.com/s/emj6k1ccsgb5boj/idleSplash.png?raw=1)
 
 Idleon Active Assistant is a tool for the popular idle game Legends of Idleon.
 
