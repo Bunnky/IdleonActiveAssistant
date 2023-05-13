@@ -64,6 +64,9 @@ ExitApp
 ;				Keybinds
 ;
 ;================================================
+^H::
+GoSub, SplashToggle
+Return
 #IfWinActive, ahk_exe LegendsOfIdleon.exe
 +NumpadAdd::Gosub, GetColors
 F1::GoSub, Char1
@@ -77,6 +80,7 @@ NumpadSub::GoSub, GoToTown
 NumpadMult::GoSub, CheckProduction
 NumpadDiv::GoSub, CollectWater
 NumpadDot::AmarokFarm()
+Numpad0::NugetManualFarm()
 MButton::GoSub, AutoOnOff
 
 ;================================================
@@ -290,12 +294,12 @@ Return
 ;------------------------------------------------
 AmarokFarm()
 {
-static Toggle
-SetTimer, AmarokFarm, % (Toggle:=!Toggle) ? 100 : "Off"
+static AmaToggle
+SetTimer, AmarokFarm, % (AmaToggle:=!AmaToggle) ? 100 : "Off"
 AmarokFarm:
-if Toggle {
+if AmaToggle {
 	IfWinActive, ahk_exe LegendsOfIdleon.exe
-	ToolTip, AMAROK ON FARM!, 270, 215, 3
+	ToolTip, AMAROK ON FARM!, 270, 215, 1
 	PixelGetColor, redo, 409, 166, Fast RGB
 	if (redo = 0xEEEEEE) {
 		Sleep 6000
@@ -317,12 +321,44 @@ Return
 }
 ;------------------------------------------------
 ;------------------------------------------------
+NugetManualFarm()
+{
+static NugToggle
+SetTimer, NugetManualFarm, % (NugToggle:=!NugToggle) ? 100 : "Off"
+NugetManualFarm:
+if NugToggle {
+	IfWinActive, ahk_exe LegendsOfIdleon.exe
+	ToolTip, FARMING NUGET CAKES MANUALLY!, 75, 50, 2
+	PixelSearch, cakeX, cakeY, 260, 40, 1860, 925, 0x5441FF, 10, Fast 
+	if (!ErrorLevel) {
+		MouseClick, Left, % cakeX + 5, % cakeY + 60 
+		Sleep 1000		
+		Send {1}
+	}
+} else {
+	SetTimer NugetToolTip, 100
+	}
+Return
+}
+;------------------------------------------------
+;------------------------------------------------
 
 
 
 
 
-
+;================================================
+;
+;				Help Menu
+;
+;================================================
+SplashToggle:
+SplashOn := !SplashOn
+If SplashOn {
+	Progress, w320 P100 fm10 fs10 CW080808 CTDC8C00 B, End: Close Script`nPause: Pause and Suspend`nF1-F12: Select Player 1-12`nMMB: Toggle auto fight`nNumpad-: Teleport to Blunder Hills`nNumpad*: Quickly deposit anvil production`nNumpad/: Collect Distilled Water from Alchemy`nNumpad.: Auto use Amarok keys`nNumpad0: Auto farm Crabcakes manually, Help Menu`n(Press Ctrl + H to close), , Terminal
+} Else
+	Progress, Off
+Return
 
 
 
@@ -332,9 +368,15 @@ Return
 ;
 ;================================================
 AmarokToolTip:
-ToolTip, , , , 3
+ToolTip, , , , 1
 SetTimer, AmarokToolTip, Off
-return
+Return
+;------------------------------------------------
+;------------------------------------------------
+NugetToolTip:
+ToolTip, , , , 2
+SetTimer, NugetToolTip, Off
+Return
 
 
 
